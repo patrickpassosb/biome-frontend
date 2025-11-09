@@ -15,6 +15,7 @@ RUN npm ci
 # Copy source code
 COPY src/ ./src/
 COPY public/ ./public/
+COPY .env.production .
 COPY tailwind.config.js .
 COPY tsconfig.json .
 COPY postcss.config.js .

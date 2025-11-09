@@ -13,27 +13,6 @@ export default function Landing() {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            {/* Demo Video Placeholder */}
-            <div className="mb-12">
-              <div className="relative mx-auto max-w-4xl">
-                <div className="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-1">
-                  <div className="bg-gray-800 rounded-xl p-8">
-                    <div className="aspect-video bg-gray-700 rounded-lg flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-6xl mb-4">🎥</div>
-                        <p className="text-text-secondary">
-                          Demo Video Preview
-                        </p>
-                        <p className="text-sm text-text-secondary mt-2">
-                          System in action
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <h1 className="text-5xl md:text-6xl font-bold text-text mb-6">
               Your AI Fitness Coach
             </h1>

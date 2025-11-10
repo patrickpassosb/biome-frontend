@@ -110,6 +110,20 @@ export default function Analyzing() {
   const [isCancelled, setIsCancelled] = useState(false);
   const [retryCountdown, setRetryCountdown] = useState<number | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const videoUrlRef = useRef<string | null>(null);
+  
+  // Memoize video URL to prevent flickering - use useEffect to set it once
+  useEffect(() => {
+    if (video && !videoUrlRef.current) {
+      videoUrlRef.current = URL.createObjectURL(video);
+    }
+    // Cleanup on unmount
+    return () => {
+      if (videoUrlRef.current) {
+        URL.revokeObjectURL(videoUrlRef.current);
+      }
+    };
+  }, [video]);
 
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -369,21 +383,23 @@ export default function Analyzing() {
           <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl animate-gentle-pulse"></div>
           <div className="relative z-10">
             <video
-              src={URL.createObjectURL(video)}
+              src={videoUrlRef.current || URL.createObjectURL(video)}
               autoPlay
               muted
               loop
               className="w-full rounded-lg"
             />
-            {/* Skeleton overlay placeholder */}
-            <div className="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-2 animate-float">🦴</div>
-                <p className="text-white font-semibold animate-gentle-pulse">
-                  Analyzing pose landmarks...
-                </p>
+            {/* Skeleton overlay placeholder - only show when processing and no error */}
+            {!error && progress < 100 && (
+              <div className="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-4xl mb-2 animate-float">🦴</div>
+                  <p className="text-white font-semibold animate-gentle-pulse">
+                    Analyzing pose landmarks...
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 

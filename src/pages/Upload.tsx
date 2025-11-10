@@ -382,7 +382,7 @@ export default function Upload() {
         {/* File Upload Preview */}
         {videoFile && videoPreviewUrl && (
           <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
             <div className="max-w-2xl mx-auto">
               <video
                 src={videoPreviewUrl}
@@ -392,7 +392,7 @@ export default function Upload() {
               <div className="text-center relative z-10">
                 <button
                   onClick={() => setVideoFile(null)}
-                  className="glass-light hover:bg-accent-500/20 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105"
+                  className="glass-light hover:bg-purple-500/20 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105"
                 >
                   ↻ Choose Different File
                 </button>

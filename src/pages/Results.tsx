@@ -254,7 +254,7 @@ export default function Results() {
               ))}
             </ol>
             <div className="flex space-x-4 mt-8 relative z-10">
-              <button className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg">
+              <button className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg">
                 Get Corrective Exercises
               </button>
               <button className="glass border border-white/10 hover:border-white/20 text-text px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105">

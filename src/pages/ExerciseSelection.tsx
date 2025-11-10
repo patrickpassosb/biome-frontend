@@ -101,17 +101,17 @@ export default function ExerciseSelection() {
               const isSelected = selectedExercise === ex.name;
               const colorClasses = {
                 primary: isSelected ? "border-primary-500 bg-primary-500/20" : "",
-                accent: isSelected ? "border-accent-500 bg-accent-500/20" : "",
+                accent: isSelected ? "border-purple-500 bg-purple-500/20" : "",
                 success: isSelected ? "border-success bg-success/20" : "",
               };
               const bgColorClasses = {
                 primary: "bg-primary-500",
-                accent: "bg-accent-500",
+                accent: "bg-purple-500",
                 success: "bg-success",
               };
               const glowColorClasses = {
                 primary: "bg-primary-500/10",
-                accent: "bg-accent-500/10",
+                accent: "bg-purple-500/10",
                 success: "bg-success/10",
               };
               return (
@@ -146,7 +146,7 @@ export default function ExerciseSelection() {
                 key={cat}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   selectedCategory === cat
-                    ? "bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg"
+                    ? "bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg"
                     : "glass text-text-secondary hover:text-text border border-white/10 hover:border-white/20"
                 }`}
                 onClick={() => setSelectedCategory(cat)}
@@ -216,7 +216,7 @@ export default function ExerciseSelection() {
           <button
             className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
               selectedExercise
-                ? "bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white shadow-lg hover:shadow-xl hover:scale-105"
+                ? "bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-105"
                 : "glass text-gray-400 cursor-not-allowed"
             }`}
             disabled={!selectedExercise}

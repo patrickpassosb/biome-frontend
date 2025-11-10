@@ -15,12 +15,13 @@ RUN npm ci
 # Copy source code
 COPY src/ ./src/
 COPY public/ ./public/
-COPY .env.production .
 COPY tailwind.config.js .
 COPY tsconfig.json .
 COPY postcss.config.js .
 
-# Build for production
+# Build for production (REACT_APP_API_URL should be set as build arg or env var)
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 RUN npm run build
 
 # Stage 2: Serve with nginx

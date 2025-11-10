@@ -261,7 +261,7 @@ export default function Upload() {
               className="p-8 glass border-2 border-white/10 rounded-xl hover:border-primary-500 glass-hover text-left relative overflow-hidden"
               onClick={() => document.getElementById("file-input")?.click()}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
               <div className="text-5xl mb-4 relative z-10">📁</div>
               <h3 className="text-2xl font-semibold text-text mb-2 relative z-10">
                 Upload Video File
@@ -285,7 +285,7 @@ export default function Upload() {
           onDrop={handleDrop}
           onDragOver={(e) => e.preventDefault()}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 hover:opacity-100 transition-opacity"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity"></div>
           <div className="text-4xl mb-4 relative z-10">📎</div>
           <p className="text-text-secondary text-lg relative z-10">
             Or drag & drop video here
@@ -356,7 +356,7 @@ export default function Upload() {
                   {recordedChunks.length > 0 && (
                     <button
                       onClick={handleRetake}
-                      className="glass-light hover:bg-accent-500/20 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all"
+                      className="glass-light hover:bg-purple-500/20 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all"
                     >
                       ↻ Retake
                     </button>
@@ -436,7 +436,7 @@ export default function Upload() {
           <button
             className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
               hasVideo
-                ? "bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white shadow-lg hover:shadow-xl hover:scale-105"
+                ? "bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-105"
                 : "glass text-gray-400 cursor-not-allowed"
             }`}
             disabled={!hasVideo}

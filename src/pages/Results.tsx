@@ -51,7 +51,7 @@ function IssueCard({ issue }: { issue: Issue }) {
       </div>
 
       <div className="flex space-x-3 relative z-10">
-        <button className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105">
+        <button className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105">
           View Frame
         </button>
         <button className="glass border border-white/10 hover:border-white/20 text-text px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105">
@@ -137,7 +137,7 @@ export default function Results() {
           </h1>
           <button
             onClick={() => navigate("/analyze")}
-            className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg"
           >
             Analyze Another
           </button>
@@ -239,14 +239,14 @@ export default function Results() {
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-text mb-6">Next Steps</h2>
           <div className="glass rounded-xl p-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
             <p className="text-text-secondary text-lg mb-6 relative z-10">
               Based on your analysis, focus on:
             </p>
             <ol className="space-y-3 relative z-10">
               {recommendations.map((rec: string, i: number) => (
                 <li key={i} className="flex items-start">
-                  <span className="bg-gradient-to-br from-primary-500 to-accent-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-4 mt-1 shadow-lg">
+                  <span className="bg-gradient-to-br from-primary-500 to-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-4 mt-1 shadow-lg">
                     {i + 1}
                   </span>
                   <span className="text-text-secondary text-lg">{rec}</span>
@@ -269,7 +269,7 @@ export default function Results() {
           <button className="glass hover:bg-primary-500/20 text-text px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 flex items-center border border-white/10">
             📥 Download Report
           </button>
-          <button className="glass hover:bg-accent-500/20 text-text px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 flex items-center border border-white/10">
+          <button className="glass hover:bg-purple-500/20 text-text px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 flex items-center border border-white/10">
             📤 Share Results
           </button>
           <button

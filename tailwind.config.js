@@ -15,6 +15,10 @@ module.exports = {
           500: "#f59e0b",
           600: "#d97706",
         },
+        purple: {
+          500: "#8b5cf6",
+          600: "#7c3aed",
+        },
         success: "#10b981",
         warning: "#f59e0b",
         error: "#ef4444",

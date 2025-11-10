@@ -24,7 +24,7 @@ export default function Landing() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-slide-up delay-300">
               <button
                 onClick={() => navigate("/analyze")}
-                className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Analyzing
               </button>
@@ -69,7 +69,7 @@ export default function Landing() {
             </div>
 
             <div className="text-center p-8 glass rounded-xl glass-hover relative overflow-hidden animate-slide-up delay-200">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
               <div className="text-5xl mb-4 relative z-10 animate-float" style={{ animationDelay: '0.5s' }}>👁️</div>
               <h3 className="text-2xl font-semibold text-text mb-4 relative z-10">
                 Real-time
@@ -116,7 +116,7 @@ export default function Landing() {
                   key={exercise}
                   className={`glass p-4 rounded-lg text-center glass-hover relative overflow-hidden animate-slide-up ${delayClass}`}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity"></div>
                   <div className="text-2xl mb-2 relative z-10">
                     {exercise === "Squat"
                       ? "🏋️"
@@ -147,8 +147,8 @@ export default function Landing() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-accent-500/20 backdrop-blur-sm"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-accent-500/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-purple-500/20 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-purple-500/10"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="glass-strong rounded-2xl p-12 border border-white/20">
             <h2 className="text-4xl font-bold text-text mb-6">
@@ -160,7 +160,7 @@ export default function Landing() {
             </p>
             <button
               onClick={() => navigate("/analyze")}
-              className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+              className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Analyze My Form Now
             </button>

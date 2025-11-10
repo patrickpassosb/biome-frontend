@@ -25,7 +25,7 @@ function ProcessStep({
         <div className="glass rounded-2xl p-8 relative overflow-hidden animate-slide-in-left">
           <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl animate-gentle-pulse"></div>
           <div className="flex items-center mb-6 relative z-10">
-            <div className="bg-gradient-to-br from-primary-500 to-accent-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mr-4 shadow-lg animate-gentle-pulse">
+            <div className="bg-gradient-to-br from-primary-500 to-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mr-4 shadow-lg animate-gentle-pulse">
               {number}
             </div>
             <h3 className="text-3xl font-bold text-text">{title}</h3>
@@ -79,7 +79,7 @@ function SkeletonVisualization() {
 function GeminiPromptDemo() {
   return (
     <div className="glass p-6 rounded-xl glass-hover relative overflow-hidden animate-slide-in-right">
-      <div className="absolute top-0 right-0 w-24 h-24 bg-accent-500/10 rounded-full blur-2xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
+      <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
       <div className="text-center mb-4 relative z-10">
         <div className="text-4xl mb-2 relative z-10 animate-float" style={{ animationDelay: '0.5s' }}>🧠</div>
         <h4 className="text-lg font-semibold text-text">AI Analysis</h4>
@@ -179,7 +179,7 @@ export default function HowItWorks() {
             </div>
 
             <div className="glass p-8 rounded-xl text-center glass-hover relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl"></div>
               <div className="text-4xl mb-4 relative z-10">👁️</div>
               <h3 className="text-xl font-semibold text-text mb-2 relative z-10">
                 MediaPipe
@@ -205,7 +205,7 @@ export default function HowItWorks() {
           </h2>
           <button
             onClick={() => navigate("/analyze")}
-            className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+            className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
           >
             Analyze Your Form
           </button>

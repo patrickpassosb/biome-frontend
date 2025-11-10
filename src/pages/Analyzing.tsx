@@ -108,6 +108,7 @@ export default function Analyzing() {
   });
   const [error, setError] = useState<string | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
+  const [retryCountdown, setRetryCountdown] = useState<number | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const delay = (ms: number) =>
@@ -174,7 +175,18 @@ export default function Analyzing() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: "Unknown error" }));
-        throw new Error(errorData.error || errorData.detail?.error || "Analysis failed");
+        
+        // Handle rate limit errors specifically
+        if (response.status === 503 || errorData.detail?.error_code === "RATE_LIMIT_EXCEEDED") {
+          const retryAfter = errorData.detail?.retry_after || 60;
+          throw new Error(
+            `AI service is temporarily unavailable due to high demand. Please try again in ${retryAfter} seconds.`
+          );
+        }
+        
+        // Handle other errors
+        const errorMessage = errorData.error || errorData.detail?.error || "Analysis failed";
+        throw new Error(errorMessage);
       }
 
       setProgress(60);
@@ -217,8 +229,18 @@ export default function Analyzing() {
       });
     } catch (error) {
       console.error("Analysis error:", error);
-      setError(error instanceof Error ? error.message : "Unknown error occurred");
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      setError(errorMessage);
       setAgentStatus({ vision: "waiting", coaching: "waiting" });
+      
+      // Check if this is a rate limit error and extract retry time
+      if (errorMessage.includes("try again in")) {
+        const match = errorMessage.match(/try again in (\d+) seconds/i);
+        if (match) {
+          const retrySeconds = parseInt(match[1], 10);
+          setRetryCountdown(retrySeconds);
+        }
+      }
     }
   }, [navigate, exercise, video, videoUrl, isCancelled]);
 
@@ -230,6 +252,22 @@ export default function Analyzing() {
       performRealAnalysis();
     }
   }, [performRealAnalysis, video, exercise]);
+
+  // Handle countdown timer for rate limit errors
+  useEffect(() => {
+    if (retryCountdown !== null && retryCountdown > 0) {
+      const interval = setInterval(() => {
+        setRetryCountdown((prev) => {
+          if (prev === null || prev <= 1) {
+            return null;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [retryCountdown]);
 
   const visionTasks: Task[] = [
     { name: "Extracting body landmarks", status: "complete" },
@@ -283,12 +321,22 @@ export default function Analyzing() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-2xl"></div>
             <h3 className="text-lg font-semibold text-red-500 mb-2 relative z-10">Analysis Failed</h3>
             <p className="text-text-secondary mb-4 relative z-10">{error}</p>
+            {retryCountdown !== null && retryCountdown > 0 && (
+              <p className="text-text-secondary mb-4 relative z-10 text-sm">
+                ⏱️ Auto-retry available in {retryCountdown} seconds
+              </p>
+            )}
             <div className="flex gap-4 relative z-10">
               <button
-                onClick={() => navigate("/upload")}
-                className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-4 py-2 rounded-lg transition-all hover:scale-105"
+                onClick={() => {
+                  setError(null);
+                  setRetryCountdown(null);
+                  performRealAnalysis();
+                }}
+                disabled={retryCountdown !== null && retryCountdown > 0}
+                className="bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Try Again
+                {retryCountdown !== null && retryCountdown > 0 ? `Retry in ${retryCountdown}s` : "Try Again"}
               </button>
               <button
                 onClick={() => navigate("/analyze")}
@@ -341,14 +389,14 @@ export default function Analyzing() {
 
         {/* Progress Bar */}
         <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden animate-slide-up delay-200">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
           <div className="text-center mb-6 relative z-10">
             <p className="text-text-secondary mb-2 animate-fade-in">
               Processing frame {Math.floor(progress * 1.2)} of 120...
             </p>
             <div className="w-full glass-light rounded-full h-3 mb-2">
               <div
-                className="bg-gradient-to-r from-primary-500 to-accent-500 h-3 rounded-full transition-all duration-500 animate-glow"
+                className="bg-gradient-to-r from-primary-500 to-purple-500 h-3 rounded-full transition-all duration-500 animate-glow"
                 style={{ width: `${progress}%` }}
               />
             </div>

@@ -221,16 +221,17 @@ export default function Upload() {
 
         {/* Error Display */}
         {uploadError && (
-          <div className="mb-8 p-4 bg-red-500/10 border-2 border-red-500 rounded-lg">
-            <div className="flex items-start">
-              <span className="text-2xl mr-3">⚠️</span>
+          <div className="mb-8 p-4 glass border-2 border-red-500/50 rounded-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl"></div>
+            <div className="flex items-start relative z-10">
+              <span className="text-2xl mr-3 relative z-10">⚠️</span>
               <div className="flex-1">
                 <p className="text-red-500 font-semibold">Upload Error</p>
                 <p className="text-text-secondary mt-1">{uploadError}</p>
               </div>
               <button
                 onClick={() => setUploadError(null)}
-                className="text-text-secondary hover:text-text ml-2"
+                className="text-text-secondary hover:text-text ml-2 relative z-10"
                 aria-label="Dismiss error"
               >
                 ✕
@@ -243,27 +244,29 @@ export default function Upload() {
         {!uploadMethod && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <button
-              className="p-8 bg-surface border-2 border-gray-600 rounded-xl hover:border-primary-500 transition-colors text-left"
+              className="p-8 glass border-2 border-white/10 rounded-xl hover:border-primary-500 glass-hover text-left relative overflow-hidden"
               onClick={() => setUploadMethod("webcam")}
             >
-              <div className="text-5xl mb-4">📹</div>
-              <h3 className="text-2xl font-semibold text-text mb-2">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
+              <div className="text-5xl mb-4 relative z-10">📹</div>
+              <h3 className="text-2xl font-semibold text-text mb-2 relative z-10">
                 Record with Webcam
               </h3>
-              <p className="text-text-secondary">
+              <p className="text-text-secondary relative z-10">
                 Use your camera to record directly
               </p>
             </button>
 
             <button
-              className="p-8 bg-surface border-2 border-gray-600 rounded-xl hover:border-primary-500 transition-colors text-left"
+              className="p-8 glass border-2 border-white/10 rounded-xl hover:border-primary-500 glass-hover text-left relative overflow-hidden"
               onClick={() => document.getElementById("file-input")?.click()}
             >
-              <div className="text-5xl mb-4">📁</div>
-              <h3 className="text-2xl font-semibold text-text mb-2">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
+              <div className="text-5xl mb-4 relative z-10">📁</div>
+              <h3 className="text-2xl font-semibold text-text mb-2 relative z-10">
                 Upload Video File
               </h3>
-              <p className="text-text-secondary">Choose from your device</p>
+              <p className="text-text-secondary relative z-10">Choose from your device</p>
             </button>
 
             <input
@@ -278,25 +281,27 @@ export default function Upload() {
 
         {/* Drag and Drop Zone */}
         <div
-          className="border-2 border-dashed border-gray-600 rounded-xl p-12 text-center mb-8 hover:border-primary-500 transition-colors"
+          className="border-2 border-dashed border-white/20 glass rounded-xl p-12 text-center mb-8 hover:border-primary-500/50 glass-hover relative overflow-hidden"
           onDrop={handleDrop}
           onDragOver={(e) => e.preventDefault()}
         >
-          <div className="text-4xl mb-4">📎</div>
-          <p className="text-text-secondary text-lg">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 hover:opacity-100 transition-opacity"></div>
+          <div className="text-4xl mb-4 relative z-10">📎</div>
+          <p className="text-text-secondary text-lg relative z-10">
             Or drag & drop video here
           </p>
-          <p className="text-text-secondary text-sm mt-2">
+          <p className="text-text-secondary text-sm mt-2 relative z-10">
             Supported: MP4, MOV, AVI, WebM (Max 100MB)
           </p>
         </div>
 
         {/* Webcam Recording Interface */}
         {uploadMethod === "webcam" && (
-          <div className="bg-surface rounded-xl p-8 mb-8">
+          <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl"></div>
             <div className="max-w-2xl mx-auto">
               {webcamError && (
-                <div className="bg-red-500/10 border-2 border-red-500 rounded-lg p-4 mb-4">
+                <div className="glass border-2 border-red-500/50 rounded-lg p-4 mb-4 relative z-10">
                   <p className="text-red-500 font-semibold">⚠️ Camera Error</p>
                   <p className="text-text-secondary">{webcamError}</p>
                   <button
@@ -304,7 +309,7 @@ export default function Upload() {
                       setWebcamError(null);
                       setUploadMethod(null);
                     }}
-                    className="mt-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm"
+                    className="mt-2 glass-light hover:bg-primary-500/20 text-white px-4 py-2 rounded-lg text-sm transition-all"
                   >
                     Try File Upload Instead
                   </button>
@@ -335,14 +340,14 @@ export default function Upload() {
                   {!isRecording ? (
                     <button
                       onClick={handleStartRecording}
-                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mr-4"
+                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mr-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all"
                     >
                       ⏺ Start Recording
                     </button>
                   ) : (
                     <button
                       onClick={handleStopRecording}
-                      className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold mr-4"
+                      className="glass-light hover:bg-red-500/20 text-white px-6 py-3 rounded-lg font-semibold mr-4 border-2 border-red-500/50 hover:scale-105 transition-all"
                     >
                       ⏹ Stop Recording
                     </button>
@@ -351,7 +356,7 @@ export default function Upload() {
                   {recordedChunks.length > 0 && (
                     <button
                       onClick={handleRetake}
-                      className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold"
+                      className="glass-light hover:bg-accent-500/20 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all"
                     >
                       ↻ Retake
                     </button>
@@ -376,17 +381,18 @@ export default function Upload() {
 
         {/* File Upload Preview */}
         {videoFile && videoPreviewUrl && (
-          <div className="bg-surface rounded-xl p-8 mb-8">
+          <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl"></div>
             <div className="max-w-2xl mx-auto">
               <video
                 src={videoPreviewUrl}
                 controls
                 className="w-full rounded-lg mb-4"
               />
-              <div className="text-center">
+              <div className="text-center relative z-10">
                 <button
                   onClick={() => setVideoFile(null)}
-                  className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold"
+                  className="glass-light hover:bg-accent-500/20 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105"
                 >
                   ↻ Choose Different File
                 </button>
@@ -396,27 +402,28 @@ export default function Upload() {
         )}
 
         {/* Tips */}
-        <div className="bg-surface rounded-xl p-8 mb-8">
-          <h3 className="text-xl font-semibold text-text mb-4">
+        <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-success/10 rounded-full blur-3xl"></div>
+          <h3 className="text-xl font-semibold text-text mb-4 relative z-10">
             Tips for best results:
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
             <div className="flex items-start">
-              <span className="text-success mr-3 mt-1">✓</span>
+              <span className="text-success mr-3 mt-1 relative z-10">✓</span>
               <span className="text-text-secondary">
                 Show full body in frame
               </span>
             </div>
             <div className="flex items-start">
-              <span className="text-success mr-3 mt-1">✓</span>
+              <span className="text-success mr-3 mt-1 relative z-10">✓</span>
               <span className="text-text-secondary">Good lighting</span>
             </div>
             <div className="flex items-start">
-              <span className="text-success mr-3 mt-1">✓</span>
+              <span className="text-success mr-3 mt-1 relative z-10">✓</span>
               <span className="text-text-secondary">Perform 3-5 reps</span>
             </div>
             <div className="flex items-start">
-              <span className="text-success mr-3 mt-1">✓</span>
+              <span className="text-success mr-3 mt-1 relative z-10">✓</span>
               <span className="text-text-secondary">
                 Side view works best for most exercises
               </span>
@@ -427,10 +434,10 @@ export default function Upload() {
         {/* Analyze Button */}
         <div className="text-center">
           <button
-            className={`px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 ${
+            className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
               hasVideo
-                ? "bg-primary-500 hover:bg-primary-600 text-white"
-                : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                ? "bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white shadow-lg hover:shadow-xl hover:scale-105"
+                : "glass text-gray-400 cursor-not-allowed"
             }`}
             disabled={!hasVideo}
             onClick={handleAnalyze}

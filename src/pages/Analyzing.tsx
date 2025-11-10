@@ -69,14 +69,15 @@ function AgentCard({ name, icon, status, tasks }: AgentCardProps) {
 
   return (
     <div
-      className={`bg-surface border-2 ${statusColor[status]} rounded-xl p-6`}
+      className={`glass border-2 ${statusColor[status]} rounded-xl p-6 relative overflow-hidden glass-hover`}
     >
-      <h3 className="text-xl font-semibold text-text mb-4 flex items-center">
+      <div className={`absolute top-0 right-0 w-24 h-24 ${status === 'processing' ? 'bg-primary-500/10' : status === 'complete' ? 'bg-success/10' : 'bg-gray-500/10'} rounded-full blur-2xl`}></div>
+      <h3 className="text-xl font-semibold text-text mb-4 flex items-center relative z-10">
         <span className="text-2xl mr-3">{icon}</span>
         {name}
         <span className="ml-auto text-lg">{statusIcon[status]}</span>
       </h3>
-      <ul className="space-y-2">
+      <ul className="space-y-2 relative z-10">
         {tasks.map((task, i) => (
           <li key={i} className="flex items-center text-text-secondary">
             <span className="mr-3">{statusIcon[task.status]}</span>
@@ -278,19 +279,20 @@ export default function Analyzing() {
 
         {/* Error Display */}
         {error && (
-          <div className="mb-8 bg-red-500/10 border-2 border-red-500 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-red-500 mb-2">Analysis Failed</h3>
-            <p className="text-text-secondary mb-4">{error}</p>
-            <div className="flex gap-4">
+          <div className="mb-8 glass border-2 border-red-500/50 rounded-xl p-6 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-2xl"></div>
+            <h3 className="text-lg font-semibold text-red-500 mb-2 relative z-10">Analysis Failed</h3>
+            <p className="text-text-secondary mb-4 relative z-10">{error}</p>
+            <div className="flex gap-4 relative z-10">
               <button
                 onClick={() => navigate("/upload")}
-                className="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-colors"
+                className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-4 py-2 rounded-lg transition-all hover:scale-105"
               >
                 Try Again
               </button>
               <button
                 onClick={() => navigate("/analyze")}
-                className="border border-gray-600 hover:border-gray-500 text-text px-4 py-2 rounded-lg transition-colors"
+                className="glass border border-white/10 hover:border-white/20 text-text px-4 py-2 rounded-lg transition-all hover:scale-105"
               >
                 Start Over
               </button>
@@ -303,7 +305,7 @@ export default function Analyzing() {
           <div className="mb-8 text-center">
             <button
               onClick={handleCancelAnalysis}
-              className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center gap-2"
+              className="glass-light hover:bg-red-500/20 text-white px-6 py-3 rounded-lg font-medium transition-all inline-flex items-center gap-2 hover:scale-105 border border-white/10"
             >
               <span>⏹</span>
               Cancel Analysis
@@ -315,8 +317,9 @@ export default function Analyzing() {
         )}
 
         {/* Video Preview with Skeleton Overlay */}
-        <div className="bg-surface rounded-xl p-8 mb-8">
-          <div className="relative">
+        <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden animate-slide-up delay-100">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl animate-gentle-pulse"></div>
+          <div className="relative z-10">
             <video
               src={URL.createObjectURL(video)}
               autoPlay
@@ -327,8 +330,8 @@ export default function Analyzing() {
             {/* Skeleton overlay placeholder */}
             <div className="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl mb-2">🦴</div>
-                <p className="text-white font-semibold">
+                <div className="text-4xl mb-2 animate-float">🦴</div>
+                <p className="text-white font-semibold animate-gentle-pulse">
                   Analyzing pose landmarks...
                 </p>
               </div>
@@ -337,18 +340,19 @@ export default function Analyzing() {
         </div>
 
         {/* Progress Bar */}
-        <div className="bg-surface rounded-xl p-8 mb-8">
-          <div className="text-center mb-6">
-            <p className="text-text-secondary mb-2">
+        <div className="glass rounded-xl p-8 mb-8 relative overflow-hidden animate-slide-up delay-200">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="text-center mb-6 relative z-10">
+            <p className="text-text-secondary mb-2 animate-fade-in">
               Processing frame {Math.floor(progress * 1.2)} of 120...
             </p>
-            <div className="w-full bg-gray-700 rounded-full h-3 mb-2">
+            <div className="w-full glass-light rounded-full h-3 mb-2">
               <div
-                className="bg-gradient-to-r from-primary-500 to-accent-500 h-3 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-primary-500 to-accent-500 h-3 rounded-full transition-all duration-500 animate-glow"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="text-text font-semibold text-lg">{progress}%</p>
+            <p className="text-text font-semibold text-lg animate-fade-in">{progress}%</p>
           </div>
         </div>
 
@@ -370,11 +374,12 @@ export default function Analyzing() {
         </div>
 
         {/* Fun Facts */}
-        <div className="bg-gradient-to-r from-primary-500/10 to-accent-500/10 border border-primary-500/20 rounded-xl p-8">
-          <h3 className="text-xl font-semibold text-text mb-4">
+        <div className="glass border border-primary-500/20 rounded-xl p-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl"></div>
+          <h3 className="text-xl font-semibold text-text mb-4 relative z-10">
             💡 Did you know?
           </h3>
-          <p className="text-text-secondary text-lg">
+          <p className="text-text-secondary text-lg relative z-10">
             Proper squat form reduces knee injury risk by 40% according to
             sports science research.
           </p>

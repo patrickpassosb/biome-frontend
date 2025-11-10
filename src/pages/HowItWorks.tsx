@@ -20,22 +20,23 @@ function ProcessStep({
   visual,
 }: ProcessStepProps) {
   return (
-    <div className="mb-16">
+    <div className="mb-16 animate-slide-up">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="flex items-center mb-6">
-            <div className="bg-primary-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mr-4">
+        <div className="glass rounded-2xl p-8 relative overflow-hidden animate-slide-in-left">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl animate-gentle-pulse"></div>
+          <div className="flex items-center mb-6 relative z-10">
+            <div className="bg-gradient-to-br from-primary-500 to-accent-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mr-4 shadow-lg animate-gentle-pulse">
               {number}
             </div>
             <h3 className="text-3xl font-bold text-text">{title}</h3>
           </div>
 
-          <p className="text-xl text-text-secondary mb-6">{description}</p>
+          <p className="text-xl text-text-secondary mb-6 relative z-10">{description}</p>
 
-          <ul className="space-y-3">
+          <ul className="space-y-3 relative z-10">
             {details.map((detail, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-primary-500 mr-3 mt-1">•</span>
+              <li key={index} className="flex items-start animate-fade-in" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
+                <div className="w-2 h-2 bg-primary-500 rounded-full mr-3 mt-2 animate-gentle-pulse" style={{ animationDelay: `${(index + 1) * 0.2}s` }}></div>
                 <span className="text-text-secondary">{detail}</span>
               </li>
             ))}
@@ -44,9 +45,10 @@ function ProcessStep({
 
         <div className="flex justify-center">
           {visual || (
-            <div className="bg-surface p-8 rounded-xl">
-              <div className="text-6xl mb-4 text-center">{icon}</div>
-              <div className="text-center text-text-secondary">
+            <div className="glass p-8 rounded-xl glass-hover relative overflow-hidden animate-slide-in-right">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl animate-gentle-pulse"></div>
+              <div className="text-6xl mb-4 text-center relative z-10 animate-float">{icon}</div>
+              <div className="text-center text-text-secondary relative z-10">
                 Visualization
               </div>
             </div>
@@ -59,16 +61,16 @@ function ProcessStep({
 
 function SkeletonVisualization() {
   return (
-    <div className="bg-surface p-6 rounded-xl">
-      <div className="text-center mb-4">
-        <div className="text-4xl mb-2">🦴</div>
+    <div className="glass p-6 rounded-xl glass-hover relative overflow-hidden animate-slide-in-right">
+      <div className="absolute top-0 right-0 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl animate-gentle-pulse"></div>
+      <div className="text-center mb-4 relative z-10">
+        <div className="text-4xl mb-2 relative z-10 animate-float">🦴</div>
         <h4 className="text-lg font-semibold text-text">Body Landmarks</h4>
       </div>
-      <div className="space-y-2 text-sm text-text-secondary">
-        <div>• 33 key points detected</div>
-        <div>• Joint angles calculated</div>
-        <div>• Symmetry analysis</div>
-        <div>• Movement tracking</div>
+      <div className="space-y-2 text-sm text-text-secondary relative z-10">
+        {["• 33 key points detected", "• Joint angles calculated", "• Symmetry analysis", "• Movement tracking"].map((item, index) => (
+          <div key={index} className="animate-fade-in" style={{ animationDelay: `${(index + 1) * 0.15}s` }}>{item}</div>
+        ))}
       </div>
     </div>
   );
@@ -76,12 +78,13 @@ function SkeletonVisualization() {
 
 function GeminiPromptDemo() {
   return (
-    <div className="bg-surface p-6 rounded-xl">
-      <div className="text-center mb-4">
-        <div className="text-4xl mb-2">🧠</div>
+    <div className="glass p-6 rounded-xl glass-hover relative overflow-hidden animate-slide-in-right">
+      <div className="absolute top-0 right-0 w-24 h-24 bg-accent-500/10 rounded-full blur-2xl animate-gentle-pulse" style={{ animationDelay: '0.5s' }}></div>
+      <div className="text-center mb-4 relative z-10">
+        <div className="text-4xl mb-2 relative z-10 animate-float" style={{ animationDelay: '0.5s' }}>🧠</div>
         <h4 className="text-lg font-semibold text-text">AI Analysis</h4>
       </div>
-      <div className="bg-gray-800 p-4 rounded-lg text-sm">
+      <div className="glass-light p-4 rounded-lg text-sm relative z-10 animate-fade-in delay-200">
         <div className="text-primary-400 mb-2">Input:</div>
         <div className="text-text-secondary mb-4">
           "Squat analysis: knee angle 87°, hip angle 92°, back rounding 15°"
@@ -166,28 +169,31 @@ export default function HowItWorks() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-surface p-8 rounded-xl text-center">
-              <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-semibold text-text mb-2">
+            <div className="glass p-8 rounded-xl text-center glass-hover relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
+              <div className="text-4xl mb-4 relative z-10">🤖</div>
+              <h3 className="text-xl font-semibold text-text mb-2 relative z-10">
                 Google ADK
               </h3>
-              <p className="text-text-secondary">Agentic AI Architecture</p>
+              <p className="text-text-secondary relative z-10">Agentic AI Architecture</p>
             </div>
 
-            <div className="bg-surface p-8 rounded-xl text-center">
-              <div className="text-4xl mb-4">👁️</div>
-              <h3 className="text-xl font-semibold text-text mb-2">
+            <div className="glass p-8 rounded-xl text-center glass-hover relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
+              <div className="text-4xl mb-4 relative z-10">👁️</div>
+              <h3 className="text-xl font-semibold text-text mb-2 relative z-10">
                 MediaPipe
               </h3>
-              <p className="text-text-secondary">Pose Detection</p>
+              <p className="text-text-secondary relative z-10">Pose Detection</p>
             </div>
 
-            <div className="bg-surface p-8 rounded-xl text-center">
-              <div className="text-4xl mb-4">🧠</div>
-              <h3 className="text-xl font-semibold text-text mb-2">
+            <div className="glass p-8 rounded-xl text-center glass-hover relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-success/10 rounded-full blur-3xl"></div>
+              <div className="text-4xl mb-4 relative z-10">🧠</div>
+              <h3 className="text-xl font-semibold text-text mb-2 relative z-10">
                 Gemini 2.0
               </h3>
-              <p className="text-text-secondary">Reasoning Engine</p>
+              <p className="text-text-secondary relative z-10">Reasoning Engine</p>
             </div>
           </div>
         </section>
@@ -199,7 +205,7 @@ export default function HowItWorks() {
           </h2>
           <button
             onClick={() => navigate("/analyze")}
-            className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200"
+            className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
           >
             Analyze Your Form
           </button>

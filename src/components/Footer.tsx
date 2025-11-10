@@ -1,7 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="bg-surface border-t border-gray-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="glass-strong border-t border-white/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-500/5"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="footer-section">
             <h4 className="text-lg font-semibold text-text mb-4">Biome</h4>

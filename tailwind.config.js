@@ -26,6 +26,13 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
+      backdropBlur: {
+        xs: "2px",
+      },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+        'glass-lg': '0 8px 32px 0 rgba(31, 38, 135, 0.5)',
+      },
     },
   },
   plugins: [],

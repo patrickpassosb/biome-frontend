@@ -19,7 +19,7 @@ export default function VideoPlayer({
   };
 
   return (
-    <div className="relative bg-gray-800 rounded-lg overflow-hidden">
+    <div className="relative glass rounded-lg overflow-hidden border border-white/10">
       <video
         ref={videoRef}
         src={videoUrl}
